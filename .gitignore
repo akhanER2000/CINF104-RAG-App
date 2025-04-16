@@ -15,7 +15,7 @@ chroma_db/
 *.sqlite3
 
 # Datos de Ollama (si se mapean localmente fuera de un volumen nombrado)
-# ollama_data/ 
+ollama_data/ 
 
 # Archivos de IDE/Sistema Operativo
 .idea/
