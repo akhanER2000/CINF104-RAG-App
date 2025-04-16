@@ -1,0 +1,51 @@
+﻿version: '3.8' # Versión de la especificación Compose
+
+services:
+  # Servicio para Ollama
+  ollama:
+    image: ollama/ollama:latest # Usa la imagen oficial de Ollama
+    container_name: ollama_service # Nombre fijo para el contenedor Ollama
+    ports:
+      - "11434:11434" # Mapea el puerto de Ollama al host
+    volumes:
+      - ollama_data:/root/.ollama # Volumen para persistir los modelos descargados por Ollama
+    networks:
+      - rag_network # Conecta al contenedor a nuestra red definida
+    # Descomentar si tienes GPU y Docker configurado para usarla:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  # Servicio para nuestra Aplicación RAG con Streamlit
+  rag_app:
+    build: . # Construye la imagen usando el Dockerfile en el directorio actual
+    container_name: rag_app_service # Nombre fijo para el contenedor de la app
+    ports:
+      - "8501:8501" # Mapea el puerto de Streamlit al host
+    volumes:
+      - ./docs:/app/docs:ro # Monta la carpeta local 'docs' como '/app/docs' (solo lectura) dentro del contenedor
+      - ./chroma_db:/app/chroma_db # Monta la carpeta local 'chroma_db' para persistir la BD vectorial
+    environment:
+      # Variable de entorno para que la app sepa dónde encontrar Ollama
+      - OLLAMA_BASE_URL=http://ollama_service:11434 
+      # (Opcional) Variable para especificar el directorio de persistencia de Chroma
+      - CHROMA_PERSIST_DIR=/app/chroma_db 
+      # (Opcional) Variable para el directorio de documentos
+      - DOCS_PATH=/app/docs
+    depends_on:
+      - ollama # Indica que este servicio depende de que 'ollama' esté iniciado (no garantiza que esté listo para servir modelos)
+    networks:
+      - rag_network # Conecta al contenedor a nuestra red definida
+
+volumes:
+  # Define el volumen nombrado para persistencia de modelos Ollama
+  ollama_data:
+
+networks:
+  # Define la red que usarán los contenedores para comunicarse
+  rag_network:
+    driver: bridge

@@ -1,0 +1,28 @@
+# Entorno Virtual
+.venv/
+venv/
+ENV/
+
+# Caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Bases de Datos Locales y Logs
+chroma_db/
+*.log
+*.sqlite3
+
+# Datos de Ollama (si se mapean localmente fuera de un volumen nombrado)
+# ollama_data/ 
+
+# Archivos de IDE/Sistema Operativo
+.idea/
+.vscode/
+.vs/
+*.DS_Store
+Thumbs.db
+
+# Archivos generados por Streamlit (si aplica)
+.streamlit/

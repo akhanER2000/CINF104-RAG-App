@@ -1,0 +1,23 @@
+﻿# Streamlit para la UI
+streamlit
+streamlit-chat 
+
+# Langchain Core y Componentes RAG
+langchain
+langchain-community
+langchain-text-splitters 
+
+# Interacción con Ollama
+ollama
+
+# Base de Datos Vectorial
+chromadb
+
+# Carga de PDFs
+pypdf 
+
+# Modelo de Embeddings (opción rápida y local)
+fastembed 
+
+# Utilidades (pueden ser necesarias dependiendo de implementaciones específicas)
+python-dotenv
