@@ -123,3 +123,18 @@ Durante la configuración y ejecución, podrías encontrar algunos de los siguie
 * **Solución:** Descarga los modelos *a través del contenedor Ollama* una vez que esté corriendo (ver sección "Instalación y Configuración", paso 4). Usa `docker exec -it ollama_service ollama pull <nombre_modelo>` y verifica con `docker exec -it ollama_service ollama list`.
 
 ## Estructura del Proyecto
+CINF104-RAG-App/
+├── docs/               # Carpeta para los archivos PDF del curso
+├── chroma_db/          # Carpeta donde ChromaDB guarda la base de datos vectorial
+├── .venv/              # (Opcional) Entorno virtual Python local
+├── app.py              # Script principal de la aplicación Streamlit y lógica RAG
+├── requirements.txt    # Dependencias Python
+├── Dockerfile          # Instrucciones para construir la imagen Docker de la app
+├── docker-compose.yml  # Define y orquesta los servicios Docker (app y Ollama)
+├── README.md           # Este archivo
+└── .gitignore          # Especifica archivos/carpetas a ignorar por Git
+
+## Notas Adicionales
+
+* **GPU:** Si tienes una GPU Nvidia compatible y Docker configurado para usarla, puedes descomentar la sección `deploy` en el servicio `ollama` dentro de `docker-compose.yml` para obtener respuestas más rápidas del LLM.
+* **Encoding:** Asegúrate de que todos los archivos de texto (`.py`, `.txt`, `.yml`, `.md`) estén guardados con codificación UTF-8 para evitar errores.
