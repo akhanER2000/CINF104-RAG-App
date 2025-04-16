@@ -1,2 +1,6 @@
 # CINF104-RAG-App
-Asistente RAG para consultar PDFs del curso CINF104 - Aprendizaje de Máquina. Responde preguntas usando LLMs locales (Ollama) y Docker. Procesamiento y consulta en lenguaje natural de materiales del curso. Evaluación CINF104.
+Este proyecto implementa un asistente conversacional basado en la arquitectura RAG (Retrieval-Augmented Generation) para realizar consultas en lenguaje natural sobre los materiales del curso "CINF104 - Aprendizaje de Máquina". La aplicación permite cargar documentos PDF del curso, procesarlos y luego responder preguntas utilizando modelos de lenguaje grandes (LLMs) locales servidos a través de Ollama, todo ello orquestado mediante Docker.
+
+
+
+Este proyecto fue desarrollado como parte de una evaluación del curso CINF104.
